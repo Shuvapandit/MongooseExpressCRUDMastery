@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-export type TUsername = {
+export type TFullname = {
     firstName: string;
     lastName: string;
 };
@@ -9,15 +9,15 @@ export type TAddress = {
     country: string;
 };
 export type TOrders = {
-    street: string;
-    city: string;
-    country: string;
+    productName: string;
+    price: number;
+    quantity: number;
 };
 
 export type TUser = {
     userId: number;
     password: string;
-    username: TUsername;
+    username: TFullname;
     age: number;
     email: string;
     isActive: 'active' | 'blocked';
