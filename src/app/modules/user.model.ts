@@ -46,7 +46,7 @@ const OrdersSchema = new Schema<TOrders>({
     },
 
 });
-const userSchema = new Schema<TUser, UserModel>(
+const userSchema = new Schema<TUser>(
     {
         userId: { type: Number, required: [true, 'ID is required'], unique: true },
         password: {
@@ -92,6 +92,5 @@ const userSchema = new Schema<TUser, UserModel>(
 
 
 );
+export const UserModel = model<TUser>('User', userSchema);
 
-
-export const User = model<TUser, UserModel>('User', userSchema);
