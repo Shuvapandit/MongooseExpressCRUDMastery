@@ -1,11 +1,11 @@
 import { UserModel } from "../user.model";
 import { TUser } from "./user.interface";
 const createUserintoDB = async (userData: TUser) => {
-    if (await User.isUserExists(userData.userId)) {
-        throw new error('User already exists!');
-    }
+    /*  if (await User.isUserExists(userData.userId)) {
+         throw new error('User already exists!');
+     } */
     const result = await UserModel.create(userData)
-    /*  return result; */
+    return result;
 
 }
 // Retrieve a list of all users

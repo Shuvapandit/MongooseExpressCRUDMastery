@@ -1,6 +1,7 @@
-
+import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
 import { TAddress, TFullname, TOrders, TUser, UserModel } from './user/user.interface';
+import config from '../config';
 
 const userNameSchema = new Schema<TFullname>({
     firstName: {
@@ -92,9 +93,22 @@ const userSchema = new Schema<TUser, UserModel>(
 
 
 );
-/* export const UserModel = model<TUser>('User', userSchema); */
+/* userSchema.pre('save', function () {
+    console.log(this, "presave");
+}) */
+userSchema.pre('save', async function (next) {
+    const usr = this; // doc
+    // hashing password and save into DB
+    usr.password = await bcrypt.hash(
+        usr.password,
+        Number(config.bcrypt_salt_rounds),
+    );
+    next();
+});
+userSchema.post('save', function () {
+    console.log(this, "post");
+})
 userSchema.statics.isUserExists = async function (userId: number) {
     const existingUser = await User.findOne({ userId });
     return existingUser;
 }
-
