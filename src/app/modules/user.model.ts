@@ -89,26 +89,40 @@ const userSchema = new Schema<TUser, UserModel>(
             type: OrdersSchema,
 
         },
+        isDeleted: {
+            type: Boolean,
+            default: false,
+        },
     },
 
 
 );
-/* userSchema.pre('save', function () {
-    console.log(this, "presave");
-}) */
+
 userSchema.pre('save', async function (next) {
     const usr = this; // doc
     // hashing password and save into DB
     usr.password = await bcrypt.hash(
         usr.password,
-        Number(config.bcrypt_salt_rounds),
+        String(config.bcrypt_salt_rounds),
     );
     next();
 });
-userSchema.post('save', function () {
-    console.log(this, "post");
-})
+userSchema.post('save', function (doc, next) {
+    doc.password = '';
+    next();
+});
+// Query Middleware
+userSchema.pre('find', function (next) {
+    this.find({ isDeleted: { $ne: true } });
+    next();
+});
+
+userSchema.pre('findOne', function (next) {
+    this.find({ isDeleted: { $ne: true } });
+    next();
+});
 userSchema.statics.isUserExists = async function (userId: number) {
     const existingUser = await User.findOne({ userId });
     return existingUser;
 }
+export const User = model<TUser, UserModel>('User', userSchema);

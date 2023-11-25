@@ -36,10 +36,10 @@ const getAllUsers = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(404).json({
             "success": false,
-            "message": "User not fetched",
+            "message": "User not found",
             "error": {
                 "code": 404,
-                "description": "User not fetched!"
+                "description": "User not found!"
             }
         });
     }
@@ -51,16 +51,58 @@ const getSpecificUser = async (req: Request, res: Response) => {
         const result = await userServices.getSpecificUsersintoDB(userId);
         res.status(200).json({
             status: 'true',
-            message: "Users id fetched successfully!",
+            message: "User fetched successfully!",
             data: result,
         })
     } catch (error) {
         res.status(404).json({
             "success": false,
-            "message": "UserId not found",
+            "message": "User not found",
             "error": {
                 "code": 404,
-                "description": "UserId not found!"
+                "description": "User not found!"
+            }
+        });
+    }
+}
+//for update user  
+const updateSpecificUser = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params;
+        const result = await userServices.updatedSpecificUsersintoDB(userId);
+        res.status(200).json({
+            status: 'true',
+            message: "User updated successfully!",
+            data: result,
+        })
+    } catch (error) {
+        res.status(404).json({
+            "success": false,
+            "message": "User not found",
+            "error": {
+                "code": 404,
+                "description": "User not found!"
+            }
+        });
+    }
+}
+//for delete user specific user by ID
+const deleteSpecificUser = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params;
+        const result = await userServices.deleteSpecificUsersintoDB(userId);
+        res.status(200).json({
+            status: 'true',
+            message: "User  deleted successfully!",
+            data: result,
+        })
+    } catch (error) {
+        res.status(404).json({
+            "success": false,
+            "message": "User not found",
+            "error": {
+                "code": 404,
+                "description": "User not found!"
             }
         });
     }
@@ -69,4 +111,6 @@ export const userControllers = {
     createUser,
     getAllUsers,
     getSpecificUser,
+    updateSpecificUser,
+    deleteSpecificUser,
 };

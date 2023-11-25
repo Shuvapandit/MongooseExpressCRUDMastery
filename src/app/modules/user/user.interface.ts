@@ -24,6 +24,7 @@ export type TUser = {
     hobbies: 'Fishing' | 'playing' | 'Travelling';
     address: TAddress;
     orders: TOrders;
+    isDeleted: boolean;
 };
 //for creating static
 export interface UserModel extends Model<TUser> {
