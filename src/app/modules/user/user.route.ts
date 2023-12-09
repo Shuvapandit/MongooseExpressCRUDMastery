@@ -10,5 +10,5 @@ router.get('/users/:userId', userControllers.getSpecificUser);
 //update a specific user by ID
 router.put('/users/:userId', userControllers.updateSpecificUser);
 //Delete a specific user by ID
-router.delete('users/:userId', userControllers.deleteSpecificUser);
+router.delete('/users/:userId', userControllers.deleteSpecificUser);
 export const UserRoutes = router;

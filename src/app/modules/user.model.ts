@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
 import { TAddress, TFullname, TOrders, TUser, UserModel } from './user/user.interface';
 import config from '../config';
-
 const userNameSchema = new Schema<TFullname>({
     firstName: {
         type: String,
@@ -96,8 +95,6 @@ const userSchema = new Schema<TUser, UserModel>(
         },
 
     },
-
-
 );
 
 userSchema.pre('save', async function (next) {
@@ -118,7 +115,6 @@ userSchema.pre('find', function (next) {
     this.find({ isDeleted: { $ne: true } });
     next();
 });
-
 userSchema.pre('findOne', function (next) {
     this.find({ isDeleted: { $ne: true } });
     next();

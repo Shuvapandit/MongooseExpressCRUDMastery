@@ -1,4 +1,3 @@
-
 import { User } from "../user.model";
 import { TUser } from "./user.interface";
 const createUserintoDB = async (userData: TUser) => {
@@ -10,7 +9,7 @@ const createUserintoDB = async (userData: TUser) => {
 };
 // Retrieve a list of all users
 const getAllUsersintoDB = async (userData: TUser) => {
-    const result = await User.find(userData).select('username fullName age email address')
+    const result = await User.find(userData).select(' username fullName age email  address');
     return result;
 }
 //Retrieve a specific user by ID
@@ -34,6 +33,5 @@ export const userServices = {
     getSpecificUsersintoDB,
     updatedSpecificUsersintoDB,
     deleteSpecificUsersintoDB,
-
 
 }

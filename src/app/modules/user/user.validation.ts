@@ -26,7 +26,7 @@ const userValidationSchema = z.object({
     isActive: z.enum(['active', 'blocked']).default('active'),
     hobbies: z.enum(['Fishing', 'playing', 'Travelling']),
     address: addressValidationSchema,
-    orders: ordersValidationSchema,
+    orders: ordersValidationSchema.optional(),
     isDeleted: z.boolean().optional().default(false),
 
 });
