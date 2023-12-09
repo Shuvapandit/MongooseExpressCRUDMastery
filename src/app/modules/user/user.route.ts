@@ -6,9 +6,9 @@ router.post('/users', userControllers.createUser);
 //Retrieve a list of all users
 router.get('/users', userControllers.getAllUsers);
 //Retrieve a specific user by ID
-router.get('/:userId', userControllers.getSpecificUser);
+router.get('/users/:userId', userControllers.getSpecificUser);
 //update a specific user by ID
-router.put('/:userId', userControllers.updateSpecificUser);
+router.put('/users/:userId', userControllers.updateSpecificUser);
 //Delete a specific user by ID
-router.delete('/:userId', userControllers.deleteSpecificUser);
+router.delete('users/:userId', userControllers.deleteSpecificUser);
 export const UserRoutes = router;

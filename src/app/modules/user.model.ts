@@ -50,12 +50,13 @@ const OrdersSchema = new Schema<TOrders>({
 const userSchema = new Schema<TUser, UserModel>(
     {
         userId: { type: Number, required: [true, 'ID is required'], unique: true },
+        username: { type: String, required: true, unique: true },
         password: {
             type: String,
             required: [true, 'Password is required'],
             maxlength: [20, 'Password can not be more than 20 characters'],
         },
-        username: {
+        fullName: {
             type: userNameSchema,
             required: [true, 'Name is required'],
         },
@@ -93,17 +94,18 @@ const userSchema = new Schema<TUser, UserModel>(
             type: Boolean,
             default: false,
         },
+
     },
 
 
 );
 
 userSchema.pre('save', async function (next) {
-    const usr = this; // doc
+    const user = this;
     // hashing password and save into DB
-    usr.password = await bcrypt.hash(
-        usr.password,
-        String(config.bcrypt_salt_rounds),
+    user.password = await bcrypt.hash(
+        user.password,
+        Number(config.bcrypt_salt_rounds),
     );
     next();
 });

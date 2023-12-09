@@ -18,14 +18,16 @@ const usernameValidationSchema = z.object({
 
 const userValidationSchema = z.object({
     userId: z.number(),
+    username: z.string(),
     password: z.string().min(1).max(20),
-    username: usernameValidationSchema,
+    fullName: usernameValidationSchema,
     age: z.number(),
     email: z.string(),
     isActive: z.enum(['active', 'blocked']).default('active'),
     hobbies: z.enum(['Fishing', 'playing', 'Travelling']),
     address: addressValidationSchema,
     orders: ordersValidationSchema,
-    isDeleted: z.boolean(),
+    isDeleted: z.boolean().optional().default(false),
+
 });
 export default userValidationSchema;

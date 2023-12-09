@@ -16,8 +16,9 @@ export type TOrders = {
 
 export type TUser = {
     userId: number;
+    username: string,
     password: string;
-    username: TFullname;
+    fullName: TFullname;
     age: number;
     email: string;
     isActive: 'active' | 'blocked';
@@ -25,6 +26,7 @@ export type TUser = {
     address: TAddress;
     orders: TOrders;
     isDeleted: boolean;
+
 };
 //for creating static
 export interface UserModel extends Model<TUser> {
