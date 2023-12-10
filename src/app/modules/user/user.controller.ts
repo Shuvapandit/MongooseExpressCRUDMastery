@@ -3,9 +3,9 @@ import { userServices } from "./user.service";
 import userValidationSchema from "./user.validation";
 const createUser = async (req: Request, res: Response) => {
     try {
-        const { user: userData } = req.body;
+
         // Schema validation using Zod
-        const zodParsedData = userValidationSchema.parse(userData);
+        const zodParsedData = userValidationSchema.parse(req.body);
         // Creating user in the database using user services
         const result = await userServices.createUserintoDB(zodParsedData);
         res.status(200).json({

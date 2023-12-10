@@ -2,20 +2,16 @@
 This is my live link https://level2asignment.vercel.app/ of this project.
 
 - How to run the application locally.
-  1 clone or Download this project.
-  2 install node and npm.
-  3 Install Project Dependencies by run: npm install.
-  4 Create a account on mogodb .
-  5 Configure MongoDB Connection -> config folder/index.ts .
-  6 Run the Project by following command npm run start:dev then server is running on port http://localhost:3000
+  1 copy this link https://level2asignment.vercel.app/.
+  2.paste this link in postman
   7 Test the Endpoints use Postman :
   - create new users:
-    POST :http://localhost:3000/api/users by your given data.
+    POST :https://level2asignment.vercel.app/api/users by your given data.
   - Retrieve a list of all users:
-    GET :http://localhost:3000/api/users
+    GET :https://level2asignment.vercel.app/api/users
   - Retrieve a specific user by ID:
-    GET :http://localhost:3000/api/users/:userId
+    GET :https://level2asignment.vercel.app/api/users/:userId
   - Update user information:
-    PUT :http://localhost:3000/api/users/:userId
+    PUT :https://level2asignment.vercel.app/api/users/:userId
   - Delete a user
-    DELETE :http://localhost:3000/api/users/:userId
+    DELETE :https://level2asignment.vercel.app/api/users/:userId

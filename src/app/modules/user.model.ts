@@ -75,12 +75,12 @@ const userSchema = new Schema<TUser, UserModel>(
         },
 
 
-        hobbies: {
+        hobbies: [{
             type: String,
             enum: {
                 values: ['Fishing', 'playing', 'Travelling'],
             },
-        },
+        }],
         address: {
             type: userAddressSchema,
 
@@ -94,7 +94,22 @@ const userSchema = new Schema<TUser, UserModel>(
             default: false,
         },
 
+
     },
+    {
+        toJSON: {
+            virtuals: true,
+            transform(doc, ret) {
+                ret.password = '';
+                delete ret._id;
+                delete ret.__v;
+                delete ret.isDeleted;
+                delete ret.fullName._id;
+                delete ret.address._id;
+                delete ret.id;
+            },
+        },
+    }
 );
 
 userSchema.pre('save', async function (next) {
